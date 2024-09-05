@@ -1,0 +1,49 @@
+{% extends 'base_without_header.html' %}
+
+{% block content %}
+    <h1>Project Details</h1>
+    <p><strong>Title:</strong> {{ project.project_title }}</p>
+    <p><strong>Start Date:</strong> {{ project.start_date }}</p>
+    <p><strong>End Date:</strong> {{ project.end_date }}</p>
+    <p><strong>Minimum Quotation:</strong> {{ project.min_quote }}</p>
+    <p><strong>Rules and Regulations:</strong> {{ project.rules_and_regulations }}</p>
+    {% if project.documents %}
+        <p><strong>Documents:</strong> <a href="{{ project.documents.url }}">Download</a></p>
+    {% endif %}
+
+    <!-- Edit Project Button -->
+    <a href="{% url 'project_update' %}" style="display: inline-block; padding: 10px 20px; border: none; border-radius: 4px; background-color: orange; color: white; font-size: 16px; text-decoration: none; cursor: pointer; text-align: center; transition: background-color 0.3s ease;"
+       onmouseover="this.style.backgroundColor='darkorange';" onmouseout="this.style.backgroundColor='orange';">Edit Project</a>
+
+    <!-- Delete Project Button -->
+    <form method="post" action="{% url 'project_delete' %}" style="display: inline;">
+        {% csrf_token %}
+        <input type="submit" value="Delete Project" style="padding: 10px 20px; border: none; border-radius: 4px; background-color: #dc3545; color: white; font-size: 16px; cursor: pointer; text-align: center; transition: background-color 0.3s ease;"
+               onmouseover="this.style.backgroundColor='darkred';" onmouseout="this.style.backgroundColor='#dc3545';">
+    </form>
+
+    <!-- Create New Project Button -->
+    <a href="{% url 'project_create' %}" style="display: inline-block; padding: 10px 20px; border: none; border-radius: 4px; background-color: orange; color: white; font-size: 16px; text-decoration: none; cursor: pointer; text-align: center; transition: background-color 0.3s ease;"
+       onmouseover="this.style.backgroundColor='darkorange';" onmouseout="this.style.backgroundColor='orange';">Create New Project</a>
+
+    {% if tenders %}
+        <h2>Tenders List</h2>
+        <ul>
+            {% for tender in tenders %}
+                <li style="margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; border-radius: 4px;">
+                    <h3>{{ tender.title }}</h3>
+                    <p><strong>Description:</strong> {{ tender.description }}</p>
+                    <p><strong>Amount Quoted:</strong> {{ tender.amount_quoted }}</p>
+                    <p><strong>Quoted By:</strong> {{ tender.user.username }}</p>
+                    <p><strong>phone no:</strong> {{ tender.user.phone_no }}</p>
+                    <p><strong>User's agency:</strong> {{ tender.user.agency }}</p>
+                    <p><strong>Email:</strong> {{ tender.user.email }}</p>
+                    <p><a href="{{ tender.pdf.url }}" style="color: orange; text-decoration: none; font-weight: bold;">Download PDF</a></p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tenders available or end date not reached yet.</p>
+    {% endif %}
+{% endblock %}
+

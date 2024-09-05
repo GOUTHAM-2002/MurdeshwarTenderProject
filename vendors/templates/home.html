@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div style="max-width: 1000px; margin: 20px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+        <!-- Project Details -->
+        <h1 style="font-size: 32px; color: #333; padding-bottom: 10px; margin-bottom: 20px;">{{ project.project_title }}</h1>
+        <p style="font-size: 18px; color: #555;"><strong>Start Date:</strong> {{ project.start_date }}</p>
+        <p style="font-size: 18px; color: #555;"><strong>End Date:</strong> {{ project.end_date }}</p>
+        <p>Minimum Quotation : {{ project.min_quote }}</p>
+
+        <h2 style="font-size: 28px; color: #ff6600; margin-top: 20px;">Rules and Regulations</h2>
+        <p style="font-size: 16px; color: #666; line-height: 1.6;">{{ project.rules_and_regulations|linebreaksbr }}</p>
+
+        {% if project.documents %}
+            <h2 style="font-size: 28px; color: #ff6600; margin-top: 20px;">Documents</h2>
+            <a href="{{ project.documents.url }}" target="_blank" style="font-size: 16px; color: #007bff; text-decoration: none; border-bottom: 1px solid #007bff;">Download Document</a>
+        {% endif %}
+
+        <!-- Divider -->
+        <hr style="border: 0; border-top: 2px solid #ff6600; margin: 40px 0;">
+
+        <!-- Tender Details Section -->
+        {% if user.tender %}
+            <div style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h2 style="font-size: 28px; color: #333;">Your Tender</h2>
+                <p style="font-size: 18px; color: #555;"><strong>Title:</strong> {{ user.tender.title }}</p>
+                <p style="font-size: 18px; color: #555;"><strong>Description:</strong> {{ user.tender.description|linebreaksbr }}</p>
+                <p style="font-size: 18px; color: #555;"><strong>Amount Quoted:</strong> {{ user.tender.amount_quoted }}</p>
+
+                <h3 style="font-size: 24px; color: #ff6600;">Images:</h3>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li style="display: inline-block; margin-right: 10px;">
+                        <img src="{{ user.tender.png1.url }}" alt="Image 1" style="max-width: 300px; max-height: 300px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    </li>
+                    <li style="display: inline-block; margin-right: 10px;">
+                        <img src="{{ user.tender.png2.url }}" alt="Image 2" style="max-width: 300px; max-height: 300px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    </li>
+                    <li style="display: inline-block; margin-right: 10px;">
+                        <img src="{{ user.tender.png3.url }}" alt="Image 3" style="max-width: 300px; max-height: 300px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    </li>
+<li style="display: inline-block; margin-right: 10px;">
+    <a href="{{ user.tender.pdf.url }}" target="_blank" style="text-decoration: none; color: #007bff; font-weight: bold;">
+        Download Tender PDF
+    </a>
+</li>
+                </ul>
+
+                <div style="margin-top: 20px;">
+                    <a href="{% url 'update_tender' user.tender.id %}" style="display: inline-block; padding: 10px 20px; margin-right: 10px; background-color: orange; color: white; text-decoration: none; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-size: 16px; transition: background-color 0.3s;">Edit Tender</a>
+                    <a href="{% url 'delete_tender' user.tender.id %}" style="display: inline-block; padding: 10px 20px; background-color: red; color: white; text-decoration: none; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-size: 16px; transition: background-color 0.3s;">Delete Tender</a>
+                </div>
+            </div>
+        {% else %}
+            <div style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-top: 20px;">
+                <p style="font-size: 18px; color: #555;">You do not have a tender for this project. <a href="{% url 'create_tender' %}" style="color: #007bff; text-decoration: none; border-bottom: 1px solid #007bff;">Create Tender</a></p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

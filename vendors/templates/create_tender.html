@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Tender</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+
+    <div style="max-width: 800px; margin: 40px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #fff;">
+        <h1 style="text-align: center; color: #333; font-size: 28px; margin-bottom: 20px;">
+            Create Tender
+        </h1>
+
+        <form method="post" enctype="multipart/form-data" style="max-width: 600px; margin: 0 auto;">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" style="display: block; width: 100%; padding: 12px; border: none; border-radius: 4px; background-color: orange; color: white; font-size: 18px; cursor: pointer; text-align: center; transition: background-color 0.3s ease; font-weight: bold; text-transform: uppercase;"
+                    onmouseover="this.style.backgroundColor='darkorange';" onmouseout="this.style.backgroundColor='orange';">
+                Create Tender
+            </button>
+        </form>
+    </div>
+
+</body>
+</html>

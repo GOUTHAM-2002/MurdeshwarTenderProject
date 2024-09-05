@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tender Details</title>
+</head>
+<body>
+    <h1>Tender Details</h1>
+    <p>Dear {{ tender.user.username }},</p>
+    <p>Your tender titled "<strong>{{ tender.title }}</strong>" has been successfully created/updated.</p>
+    <p>Description: {{ tender.description }}</p>
+    <p>Amount Quoted: {{ tender.amount_quoted }}</p>
+    <p>Attached is the PDF with all the tender details.</p>
+    <p>Thank you!</p>
+</body>
+</html>

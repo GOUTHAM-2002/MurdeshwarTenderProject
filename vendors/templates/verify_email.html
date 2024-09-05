@@ -1,0 +1,68 @@
+{% extends 'base_without_header.html' %}
+
+{% block title %}Verify Email{% endblock %}
+
+{% block content %}
+<style>
+    .verify-email-container {
+        max-width: 600px;
+        margin: 100px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .verify-email-container h2 {
+        font-size: 1.75rem;
+        color: #343a40;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .verify-email-container .form-group label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .verify-email-container .form-control {
+        border-radius: .25rem;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 15px;
+    }
+
+    .verify-email-container .btn-primary {
+        background-color: #fd7e14; /* Orange background */
+        border-color: #fd7e14;
+        color: #fff;
+        border-radius: .25rem;
+        padding: .75rem 1.5rem;
+        display: block;
+        width: 100%;
+        transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .verify-email-container .btn-primary:hover {
+        background-color: #e67e22; /* Darker orange on hover */
+        border-color: #e67e22;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<div class="verify-email-container">
+    <h2>Verify Your Email</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="otp">OTP:</label>
+            <input type="text" name="otp" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Verify</button>
+    </form>
+</div>
+
+{% endblock %}

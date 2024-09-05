@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Murdeshwar Tender{% endblock %}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <style>
+
+        body {
+            background-image: url("{% static 'vendors/images/bg1.jpg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #333;
+            font-family: 'Arial', sans-serif;
+        }
+        header {
+            background-color: #ff6f00; /* Orange color */
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            margin-left: 20px;
+        }
+        header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+        footer {
+            background-color: #ff6f00; /* Orange color */
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+        }
+        .alert-primary {
+            background-color: #ffcc80; /* Light orange */
+            border-color: #ffb74d;
+            color: #333;
+        }
+        .alert-secondary {
+            background-color: #ffe0b2; /* Very light orange */
+            border-color: #ffcc80;
+            color: #333;
+        }
+        .alert-danger {
+            background-color: #ff8a80; /* Light red */
+            border-color: #ff5252;
+            color: #fff;
+        }
+        .alert-success {
+            background-color: #a5d6a7; /* Light green */
+            border-color: #66bb6a;
+            color: #333;
+        }
+        .alert-warning {
+            background-color: #ffb74d; /* Orange-yellow */
+            border-color: #ffa726;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header class="d-flex justify-content-between align-items-center">
+        <a href="{% url 'home' %}" class="ml-4">Home</a>
+        <h1 class="mr-4">Murdeshwar Tender</h1>
+    </header>
+
+    <div class="container">
+        {% if messages %}
+            <div class="alert alert-dismissible fade show" role="alert">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% block content %}
+        <!-- Page content will be inserted here -->
+        {% endblock %}
+    </div>
+
+<!--    <footer>-->
+<!--        &copy; 2024 Murdeshwar Tender System-->
+<!--    </footer>-->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

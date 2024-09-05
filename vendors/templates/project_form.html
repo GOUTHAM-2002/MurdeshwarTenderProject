@@ -1,0 +1,25 @@
+{% extends 'base_without_header.html' %}
+
+{% block content %}
+
+    <h1 style="text-align: center; color: #333; font-size: 24px; margin-bottom: 20px;">
+        {% if form.instance.pk %}Edit Project{% else %}Create Project{% endif %}
+    </h1>
+
+    <!-- Hint text added here -->
+    <p style="text-align: center; color: #666; font-size: 14px; margin-bottom: 20px;">
+        {% if not form.instance.pk %}
+            If you see this page right after admin login, it means there is no project created yet. Please use this form to create one.
+        {% endif %}
+    </p>
+
+    <form method="post" enctype="multipart/form-data" style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="display: inline-block; padding: 10px 20px; border: none; border-radius: 4px; background-color: orange; color: white; font-size: 16px; cursor: pointer; text-align: center; transition: background-color 0.3s ease; font-weight: bold; text-transform: uppercase;"
+                onmouseover="this.style.backgroundColor='darkorange';" onmouseout="this.style.backgroundColor='orange';">
+            Save
+        </button>
+    </form>
+
+{% endblock %}

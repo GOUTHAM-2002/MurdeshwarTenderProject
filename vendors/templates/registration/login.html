@@ -1,0 +1,10 @@
+{% extends 'base_without_header.html' %}
+
+{% block content %}
+
+    <p>To access your account, please <a href="{% url 'login_user' %}"
+         style="color: orange; background-color: transparent; border: 2px solid orange; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
+         Login
+      </a>.</p>
+
+{% endblock %}

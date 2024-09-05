@@ -1,0 +1,13 @@
+appdirs==1.4.4
+asgiref==3.8.1
+chardet==5.2.0
+defusedxml==0.7.1
+Django==5.1
+fonttools==4.53.1
+fpdf2==2.7.9
+fs==2.4.16
+pillow==10.4.0
+PyPDF2==3.0.1
+reportlab==4.2.2
+six==1.16.0
+sqlparse==0.5.1

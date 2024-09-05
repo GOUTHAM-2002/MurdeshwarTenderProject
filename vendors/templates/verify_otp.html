@@ -1,0 +1,17 @@
+<!-- templates/verify_otp.html -->
+{% extends 'base_without_header.html' %}
+
+
+{% block content %}
+<h2>Verify OTP</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" required>
+    <label for="otp_code">OTP Code:</label>
+    <input type="text" name="otp_code" id="otp_code" required>
+    <button type="submit">Verify OTP</button>
+</form>
+
+{% endblock %}

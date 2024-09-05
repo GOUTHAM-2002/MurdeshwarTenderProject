@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f0f4f8;
+            background-image: url("{% static 'vendors/images/bg1.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .header .btn {
+            margin-left: 10px;
+            font-size: 18px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .main-content {
+            display: flex;
+            align-items: center; /* Vertically center the button */
+            justify-content: flex-start; /* Align to the left side */
+            padding-left: 20px; /* Add padding to avoid touching the edge */
+            height: 100%; /* Full height for the main-content to center vertically */
+            position: relative; /* For absolute positioning of the text */
+        }
+
+        .btn-vendor,
+        .btn-admin {
+            padding: 20px 40px;
+            font-size: 24px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .btn-vendor {
+            background-color: #ff5722; /* Orange */
+            color: #fff;
+        }
+
+        .btn-vendor:hover {
+            background-color: #e64a19;
+            transform: scale(1.05);
+        }
+
+        .btn-admin {
+            background-color: #007bff; /* Blue */
+            color: #fff;
+        }
+
+        .btn-admin:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+.text-animation {
+    position: absolute;
+    top: 30%; /* Adjust this percentage to move the text up or down */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+    text-align: center;
+    animation: fadeInOut 5s infinite, moveUpDown 3s infinite;
+}
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes moveUpDown {
+            0%, 100% {
+                transform: translate(-50%, -50%) translateY(-10px);
+            }
+            50% {
+                transform: translate(-50%, -50%) translateY(10px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header with Admin Button -->
+    <header class="header">
+        <a href="{% url 'project_list' %}" class="btn btn-admin">Admin</a>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Animated Text -->
+        <div class="text-animation">
+            Murdeshwar Tender System
+        </div>
+        <a href="{% url 'login' %}" class="btn btn-vendor">Vendor</a>
+    </div>
+
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

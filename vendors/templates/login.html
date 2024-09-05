@@ -1,0 +1,23 @@
+{% extends 'base_without_header.html' %}
+
+{% block content %}
+    <h2>Login</h2>
+    {% if request.GET.next == 'restricted' %}
+        <p style="color: red;">You are not authorized to access this page. Please login with the correct credentials.</p>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <div style="margin-bottom: 15px;">
+            <label for="username_or_email">Username or Email:</label>
+            <input type="text" id="username_or_email" name="username_or_email" required>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 4px;">Login</button>
+    </form>
+    <p style="margin-top: 15px;">Don't have an account? <a href="{% url 'register' %}" style="color: #007bff; text-decoration: none;">Register here</a></p>
+    <p style="margin-top: 15px;"> <a href="{% url 'password_reset' %}" style="color: #007bff; text-decoration: none;">Forgot Password</a></p>
+
+{% endblock %}
